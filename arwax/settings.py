@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure--(tz@#g)#bi%ax7hn06k8&hx0&=-+xcf_8z-83sb5k8ej5w(57"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['62.72.1.252','api.arwax.pro','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['62.72.1.252','api.arwax.pro','www.api.arwax.pro','localhost','127.0.0.1','arwax.pro','www.arwax.pro']
 
 
 # Application definition
@@ -37,26 +37,65 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "corsheaders",
+    "django_extensions",
     "back",
+    "sslserver",
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+INSTALLED_APPS += ['corsheaders']
+
+MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware']
+
 CORS_ALLOWED_ORIGINS = [
-    "http://react_app:3000",  # React corriendo en Docker
-    "http://django_app:8000",   # Django API en Docker
+    "https://api.arwax.pro",
+    "https://react_app:3000",
+    "https://django_app:8000",
+    "https://arwax.pro",
+    "https://www.api.arwax.pro",
+    "https://www.react_app:3000",
+    "https://www.django_app:8000",
+    "https://www.arwax.pro",
 ]
+
+SECURE_SSL_REDIRECT = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+SECURE_HSTS_SECONDS = 31536000  # Habilita HSTS para 1 año.
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+CORS_ALLOW_ALL_ORIGINS =True
+
+CORS_ALLOW_HEADERS = [
+    "content-type",
+    "authorization",
+    "accept",
+    "origin",
+    "user-agent",
+    "referer",
+    "x-requested-with",
+]
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
 ROOT_URLCONF = "arwax.urls"
+
+STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/media/'
 
 TEMPLATES = [
     {
@@ -81,9 +120,13 @@ WSGI_APPLICATION = "arwax.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'arwax',
+        'USER': 'master',
+        'PASSWORD': 'Thedoors420.',
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 

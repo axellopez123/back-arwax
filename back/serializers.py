@@ -1,9 +1,9 @@
 from rest_framework import serializers
-from .models import Bots
+from .models import Bot
 
-class BotsSerializer(serializers.ModelSerializer):
+class BotSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bots
+        model = Bot
         fields = '__all__'
 
     def validate_ip_address(self, value):

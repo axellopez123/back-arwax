@@ -15,4 +15,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 
 # Hacer migraciones y luego iniciar el servidor de desarrollo
-CMD ["bash", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+CMD ["bash", "-c", "python manage.py makemigrations && python manage.py migrate && python manage.py runscript create_superuser -v3 && python manage.py runserver 0.0.0.0:8000"]

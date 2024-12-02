@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import BotsAPI
+from .views import BotAPI
 
 urlpatterns = [
-    path('bots/', BotsAPI.as_view(), name='bots-api'),
+    path('bot/', BotAPI.as_view(), name='bot-api'),
 ]
