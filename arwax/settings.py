@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure--(tz@#g)#bi%ax7hn06k8&hx0&=-+xcf_8z-83sb5k8ej5w(57
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['62.72.1.252','api.arwax.pro','localhost','127.0.0.1']
 
 
 # Application definition
@@ -53,8 +53,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://react-app:3000",  # React corriendo en Docker
-    "http://django-app:8000",   # Django API en Docker
+    "http://react_app:3000",  # React corriendo en Docker
+    "http://django_app:8000",   # Django API en Docker
 ]
 ROOT_URLCONF = "arwax.urls"
 
