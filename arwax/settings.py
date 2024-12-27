@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -54,16 +55,14 @@ MIDDLEWARE = [
 
 INSTALLED_APPS += ['corsheaders']
 
-MIDDLEWARE += ['corsheaders.middleware.CorsMiddleware']
-
 CORS_ALLOWED_ORIGINS = [
     "https://api.arwax.pro",
-    "https://react_app:3000",
-    "https://django_app:8000",
+    "https://react_app",
+    "https://django_app",
     "https://arwax.pro",
     "https://www.api.arwax.pro",
-    "https://www.react_app:3000",
-    "https://www.django_app:8000",
+    "https://www.react_app",
+    "https://www.django_app",
     "https://www.arwax.pro",
 ]
 
@@ -74,7 +73,7 @@ SECURE_HSTS_SECONDS = 31536000  # Habilita HSTS para 1 año.
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 SECURE_HSTS_PRELOAD = True
 
-CORS_ALLOW_ALL_ORIGINS =True
+CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOW_HEADERS = [
     "content-type",
@@ -84,6 +83,7 @@ CORS_ALLOW_HEADERS = [
     "user-agent",
     "referer",
     "x-requested-with",
+    "access-control-allow-origin",
 ]
 
 CSRF_COOKIE_SECURE = True
