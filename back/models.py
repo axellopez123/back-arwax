@@ -11,6 +11,6 @@ class Bots(models.Model):
     user_agent = models.CharField(max_length=255, blank=True, null=True, help_text="Información del navegador y dispositivo del usuario")
     referrer = models.URLField(blank=True, null=True, help_text="URL de referencia")
     ip_address = models.GenericIPAddressField(blank=True, null=True, help_text="Dirección IP del usuario")
-    session_duration = models.PositiveIntegerField(blank=True, null=True, help_text="Duración de la sesión en segundos")
+    session_duration = models.DecimalField(max_digits=10, decimal_places=6, blank=True, null=True, help_text="Duración de la sesión en segundos con decimales")
     created_at = models.DateTimeField(auto_now_add=True, help_text="Fecha y hora de creación")
     updated_at = models.DateTimeField(auto_now=True, help_text="Fecha y hora de última actualización")
